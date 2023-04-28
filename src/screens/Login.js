@@ -17,15 +17,15 @@ const Login = () => {
       .get()
       .then(querySnapshot => {
         /* ... */
-        console.log(querySnapshot.docs[0]._data.password);
-        if (querySnapshot.docs[0]._data.password == pass) {
-          gotonext();
-        } else {
-          Alert.alert('Wrong Password');
-        }
+        console.log(querySnapshot.doc[0]._data);
+        // if (querySnapshot.docs[0]._data.password == pass) {
+        //   gotonext();
+        // } else {
+        //   Alert.alert('Wrong Password');
+        // }
       })
       .catch(error => {
-        Alert.alert('No user Found');
+        // Alert.alert('No user Found');
         console.log(error);
       });
   };

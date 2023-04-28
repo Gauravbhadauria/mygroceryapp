@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import CustomButton from '../common/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-
+import uuid from 'react-native-uuid';
 const Signup = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('');
@@ -12,13 +12,16 @@ const Signup = () => {
   const [pass, setPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const addUser = () => {
+    let uid = uuid.v4();
     firestore()
       .collection('Users')
-      .add({
+      .doc(uid)
+      .set({
         name: name,
         email: email,
         mobile: mobile,
         password: pass,
+        userId: uid,
       })
       .then(() => {
         console.log('User added!');
